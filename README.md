@@ -18,3 +18,4 @@ And set up the database and included seed records:
 ```
 bundle exec rake db:{create,setup}
 ```
+# module_3_assessment
