@@ -1,3 +1,15 @@
 Search index
 
 <h1><%= @total_count %> Total Stores</h1>
+
+<ul class="stores">
+  <% @found_stores.each do |store| %>
+    <li>
+      Name: <%= store.name %>, 
+      City: <%= store.city %>,
+      Distance: <%= store.distance %>,
+      Phone Number: <%= store.phone %>,
+      Store Type: <%= store.store_type %>
+    </li>
+  <% end %>
+</ul>

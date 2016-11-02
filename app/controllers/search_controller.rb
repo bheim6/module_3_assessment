@@ -10,6 +10,6 @@ class SearchController < ApplicationController
     @found_stores = @stores_array.map do |raw_store|
       BestBuyStore.new(raw_store)
     end
-    binding.pry
+    # binding.pry
   end
 end
