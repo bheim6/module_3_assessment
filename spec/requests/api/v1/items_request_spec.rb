@@ -12,7 +12,9 @@ require 'rails_helper'
   #  if the record is successfully deleted
   #
   # When I send a POST request to /api/v1/items with a name, description, and
-  # image_url I receive a 201 JSON response if the record is successfully created And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_at
+  # image_url I receive a 201 JSON response if the record is successfully created
+  # And I receive a JSON response containing the id, name, description, and image_url
+  # but not the created_at or updated_at
 
 describe "User can CRUD items from api" do
   it "can see all items" do
@@ -45,6 +47,27 @@ describe "User can CRUD items from api" do
     expect(item[:name]).to eq("thing")
     expect(item[:description]).to eq("cool")
     expect(item[:image_url]).to eq("https://pbs.twimg.com/profile_images/507251035929190400/BDUL3Uzt_400x400.png")
-    expect(item.count).to eq(1)
+    expect(item[:id]).to eq(1)
+  end
+
+  it "can create an item" do
+    item_params = {name: "thing", description: "cool", image_url: "https://pbs.twimg.com/profile_images/507251035929190400/BDUL3Uzt_400x400.png"}
+    post '/api/v1/items', item_params
+
+    item = Item.last
+
+    expect(response.status).to eq(201)
+
+    expect(item[:name]).to eq("thing")
+    expect(item[:description]).to eq("cool")
+    expect(item[:image_url]).to eq("https://pbs.twimg.com/profile_images/507251035929190400/BDUL3Uzt_400x400.png")
+  end
+
+  it "can delete an item" do
+    Item.create(name: "thing", description: "cool", image_url: "https://pbs.twimg.com/profile_images/507251035929190400/BDUL3Uzt_400x400.png")
+
+    delete '/api/v1/items/1'
+
+    
   end
 end
