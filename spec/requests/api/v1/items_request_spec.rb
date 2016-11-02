@@ -10,6 +10,7 @@ describe "User can CRUD items from api" do
     expect(response.status).to eq(200)
 
     items = JSON.parse(response.body, symbolize_names: true)
+    binding.pry
 
     expect(items.count).to eq(500)
   end
