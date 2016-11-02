@@ -20,6 +20,11 @@ group :development do
   gem "spring"
 end
 
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+end
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
