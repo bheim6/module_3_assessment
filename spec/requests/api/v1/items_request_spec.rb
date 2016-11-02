@@ -66,8 +66,16 @@ describe "User can CRUD items from api" do
   it "can delete an item" do
     Item.create(name: "thing", description: "cool", image_url: "https://pbs.twimg.com/profile_images/507251035929190400/BDUL3Uzt_400x400.png")
 
+    get 'api/v1/items'
+    items = JSON.parse(response.body, symbolize_names: true)
+    expect(items.count).to eq(1)
+
     delete '/api/v1/items/1'
 
-    
+    expect(response.status).to eq(204)
+
+    get 'api/v1/items'
+    items = JSON.parse(response.body, symbolize_names: true)
+    expect(items.count).to eq(0)
   end
 end
