@@ -31,6 +31,8 @@ describe "User can CRUD items from api" do
     expect(items.first[:name]).to eq("thing")
     expect(items.first[:description]).to eq("cool")
     expect(items.first[:image_url]).to eq("https://pbs.twimg.com/profile_images/507251035929190400/BDUL3Uzt_400x400.png")
+    expect(items.first[:created_at]).to eq(nil)
+    expect(items.first[:updated_at]).to eq(nil)
 
     expect(items.count).to eq(5)
   end
@@ -43,12 +45,13 @@ describe "User can CRUD items from api" do
     expect(response.status).to eq(200)
 
     item = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
 
     expect(item[:name]).to eq("thing")
     expect(item[:description]).to eq("cool")
     expect(item[:image_url]).to eq("https://pbs.twimg.com/profile_images/507251035929190400/BDUL3Uzt_400x400.png")
     expect(item[:id]).to eq(1)
+    expect(item[:created_at]).to eq(nil)
+    expect(item[:updated_at]).to eq(nil)
   end
 
   it "can create an item" do
@@ -62,6 +65,8 @@ describe "User can CRUD items from api" do
     expect(item[:name]).to eq("thing")
     expect(item[:description]).to eq("cool")
     expect(item[:image_url]).to eq("https://pbs.twimg.com/profile_images/507251035929190400/BDUL3Uzt_400x400.png")
+    expect(item[:created_at]).to eq(nil)
+    expect(item[:updated_at]).to eq(nil)
   end
 
   it "can delete an item" do
